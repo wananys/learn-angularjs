@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>登录</title>
+ 	<link rel="stylesheet" href="css/frozen.css?v=2017041201008" />
+ 	<link rel="stylesheet" href="css/main.css?v=2017041201008" />
+    <body class="self-whitebg">
+    	<div class="login-box">
+    		<div class="login-row">
+	    		<em class="login-i-mobile login-icon"></em>
+	    		<input type="text" name="mobile" placeholder="请输入账号"/>
+	    		<em class="login-close login-icon"></em>
+	    	</div>
+	    	<div class="login-row">
+	    		<em class="login-i-pwd login-icon"></em>
+	    		<input type="password" name="password" placeholder="请输入密码"/>
+	    		<em class="login-hide login-icon"></em>
+	    	</div>
+	    	<div class="login-row login-code-row" style="display: none;">
+	    		<input type="text" name="code" placeholder="请输入右侧验证码"/>
+	    		<img src="" class="login-codeimg"/>
+	    	</div>
+	    	<button class="login-btn">登录</button>
+    		<p class="login-fpwd">忘记密码?</p>
+    	</div>
+    	
+    	<div class="self-model">
+    		<div class="login-content">
+    			<p class="login-tips">忘记登录密码，<br>需联系客服主管进行密码重置。</p>
+    			<p class="login-email">客服邮箱：services@chanewm.com</p>
+    			<button class="login-btn-ok">知道了</button>
+    		</div>
+    	</div>
+    	
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/frozen.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/common.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/main.js?v=2017041201008" ></script>
+    <script>
+    	$(function(){
+			login.init();
+		});
+    </script>
+</html>

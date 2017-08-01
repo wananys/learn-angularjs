@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>节点汇报</title>
+ 	<link rel="stylesheet" href="css/frozen.css" />
+ 	<link rel="stylesheet" href="css/main.css" />
+    <body>
+    	<ul class="loan-list" id="nodeList">
+    		<script id="nodeListTemp" type="text/html">
+    		{{each dataSource.nodeReportList}}
+    		<li>
+    			<div class="ui-row-flex loan-list-bottom">
+    				<h3 class="ui-col self-omit">{{$value.reportUserName}}</h3>
+    				<div class="ui-col loan-right loan-list-title">{{$value.reportTime}}</div>
+    			</div>
+    			<p class="self-omit-2 loan-downmore">{{$value.reportContent}}</p>
+    			<!--<p class="more-bottom loan-more-bottom">&nbsp;</p>-->
+    		</li>
+    		{{/each}}
+    		</script>
+    	</ul>
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js" ></script>
+    <script type="text/javascript" src="js/frozen.js" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js" ></script>
+    <script type="text/javascript" src="js/common.js" ></script>
+    <script type="text/javascript" src="js/module.js" ></script>
+    <script>
+    	$(function(){
+    		loanNodeReport.init();
+    		menus();
+		});
+    </script>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>账户详情</title>
+ 	<link rel="stylesheet" href="css/frozen.css?v=2017041201008" />
+ 	<link rel="stylesheet" href="css/main.css?v=2017041201008" />
+    <body class="loan-detail">
+    	<div class="ui-row-flex loan-detail-title">
+		    <div class="ui-col ui-col-1">名称</div>
+		    <div class="ui-col ui-col-2 loan-center">详细信息</div>
+		</div>
+		<div id="accountDetail">
+		<script id="accountDetailTemp" type="text/html">
+    	<ul class="loan-detail-list">
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">账户名称</div>
+		    		<div class="ui-col ui-col-2">{{loanLenderAccount.accountName}}</div>
+		    	</div>
+    		</li>
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">账号编号</div>
+		    		<div class="ui-col ui-col-2">{{loanLenderAccount.accountNo}}</div>
+		    	</div>
+    		</li>
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">状态</div>
+		    		<div class="ui-col ui-col-2">{{loanLenderAccount.statusDesc}}</div>
+		    	</div>
+    		</li>
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">结算账号</div>
+		    		<div class="ui-col ui-col-2">{{loanLenderAccount.bankCardNo}}</div>
+		    	</div>
+    		</li>
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">开户行</div>
+		    		<div class="ui-col ui-col-2">{{loanLenderAccount.bankName}}</div>
+		    	</div>
+    		</li>
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">开户日期</div>
+		    		<div class="ui-col ui-col-2">{{loanLenderAccount.accountDate}}</div>
+		    	</div>
+    		</li>
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">贷款人</div>
+		    		<div class="ui-col ui-col-2">{{loanLenderAccount.lenderName}}</div>
+		    	</div>
+    		</li>
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">账号用途</div>
+		    		<div class="ui-col ui-col-2">{{loanLenderAccount.accountDetail}}</div>
+		    	</div>
+    		</li>
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">备注信息</div>
+		    		<div class="ui-col ui-col-2">{{loanLenderAccount.remark}}</div>
+		    	</div>
+    		</li>
+    	</ul>
+    	</script>
+    	</div>
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/frozen.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/common.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/module.js?v=2017041201008" ></script>
+    <script>
+    	$(function(){
+    		accountDetail.init();
+    		menus('home');
+    	});
+    </script>
+</html>

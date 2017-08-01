@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>收款账户</title>
+ 	<link rel="stylesheet" href="css/frozen.css?v=2017041201008" />
+ 	<link rel="stylesheet" href="css/main.css?v=2017041201008" />
+    <body>
+    	<div class="loan-search">
+    		<em class="loan-back none"></em>
+    		<input type="search" class="loan-search-ipt" name="search"/>
+    		<span class="loan-search-btn">搜索</span>
+    		<em class="loan-search-clear"></em>
+    	</div>
+    	<ul class="loan-list">
+    		<script id="accountTemp" type="text/html">
+    		{{each loanLenderAccountsList  }}	
+    		<li>
+    			<a href="account_detail.html?accountId={{$value.accountId}}">
+    				<div class="ui-row-flex active">
+    					<h3 class="ui-col ui-col-3 loan-list-name-s">
+    						<p class="self-omit-1">{{$value.bankName}}</p>
+    					</h3>
+    					<div class="ui-col ui-col-1 loan-list-going {{if $value.status=="02"}}end{{/if}}"><span>{{$value.statusDesc}}</span></div>
+    				</div>
+    				<div class="ui-row-flex loan-companyname self-line">
+					    <div class="ui-col self-omit">{{$value.accountName}}</div>
+					</div>
+					<div class="ui-row-flex loan-list-title">
+					    <div class="ui-col">账户名称</div>
+					</div>
+    			</a>
+    		</li>
+    		{{/each}}
+    		</script>
+    	</ul>
+    	<div class="ui-loading-wrap">
+		    <p>正在加载中...</p>
+		</div>
+		<input type="hidden" name="loan-keyword" value=""/>
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/frozen.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/common.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/module.js?v=2017041201008" ></script>
+    <script>
+    	$(function(){
+    		account.init();
+			menus();
+		});
+    </script>
+</html>

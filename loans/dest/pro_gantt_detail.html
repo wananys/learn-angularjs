@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>项目管理甘特图</title>
+ 	<link rel="stylesheet" href="css/frozen.css?v=2017041201008" />
+ 	<link rel="stylesheet" href="css/wheelpicker.min.css?v=2017041201008" />
+ 	<link rel="stylesheet" href="css/main.css?v=2017041201008" />
+    <body id="gantt" class="self-whitebg">
+    	<div class="gantt-list">
+    		<div class="gantt-list-left">
+    			<ul class="gantt-list-row">
+    				<li class="gantt-list-head">
+    					<em class="gantt-head-icon"></em>
+    				</li>
+    				<li>状态</li>
+    				<li class="gantt-data">起始日期</li>
+    				<li class="gantt-data">截止日期</li>
+    				<li>人员</li>
+    				<li class="gantt-data">汇报数量</li>
+    			</ul>
+    		</div>
+    		<div id="gantt-list">
+    			<script type="text/html" id="ganttTemp">
+    			{{each planList}}
+    			<div class="gantt-list-pro gantt-project" data-date="{{$value.planBeginDate}}">
+	    			<ul class="gantt-list-row">
+	    				<li class="gantt-list-head">
+	    					<p class="self-omit-2">{{$value.planName}}</p></li>
+	    				<li><span class="gantt-list-status {{if $value.planStatus=='01'}}begin{{else if $value.planStatus=='03'}}finish{{else if $value.planStatus=='04'}}end{{/if}}">
+	    					{{$value.planStatusDesc}}</span>
+	    				</li>
+	    				<li>{{$value.planBeginDate}}</li>
+	    				<li>{{$value.planEndDate}}</li>
+	    				<li class="self-omit">{{$value.planDirector}}</li>
+	    				<li>{{$value.scheduleContentCount}}</li>
+	    			</ul>
+	    		</div>
+	    		{{/each}}
+    			</script>
+    		</div>
+    	</div>
+    	
+    	<div class="ui-row-flex gantt-status">
+    		<div class="ui-col cur-month" data-date="">10月</div>
+    		<div class="ui-col"><span class="gantt-status-going">执行中</span></div>
+    		<div class="ui-col"><span class="gantt-status-begin">未开始</span></div>
+    		<div class="ui-col"><span class="gantt-status-finish">完成</span></div>
+    		<div class="ui-col"><span class="gantt-status-end">搁置</span></div>
+    		<div class="ui-col"><span class="gantt-status-delay">延期</span></div>
+    		<div class="ui-col gantt-today">当天</div>
+    	</div>
+    	
+    	<div class="gantt-pic"> 
+    	<table class="ui-table" cellspacing="0" cellpadding="0" border="0">
+    		
+    		<script type="text/html" id="ganttDayPicTemp">
+    			{{each weekList as week}}
+    			{{each week.dateList as list}}
+    			<tr class="gantt-day-list">
+    				
+			    	<td class="gantt-pic-left gantt-border">{{list.week}} {{list.date | dateFormat}}</td>
+			    	<td class="{{list.date | isToday}} {{if list.week == '六' || list.week == '日'}}gantt-weekend{{/if}}">
+			    		{{each planList as plan}}
+							<div class="gantt-list-pro"><div class="gantt-line {{list.date | compareDate:plan.planBeginDate,plan.planEndDate,plan.planStatus}}"></div></div>
+						{{/each}}
+			    	</td>
+			    </tr>
+			   	{{/each}}
+			    {{/each}}
+			    
+    			{{each weekList as week}}
+    			{{each week.dateList as list}}
+    			<tr class="gantt-week-list none">
+    				{{if $index == 0}}
+			    	<td class="gantt-pic-left gantt-border {{week.dateList | strLengthOmit}}" rowspan="{{week.dateList | strLength}}">{{week.beginDate | weekDate:week.endDate}}</td>
+			    	{{/if}}
+			    	<td class="{{list.date | isToday}} {{if list.week == '六' || list.week == '日'}}gantt-weekend{{/if}}">
+			    		{{each planList as plan}}
+							<div class="gantt-list-pro"><div class="gantt-line {{list.date | compareDate:plan.planBeginDate,plan.planEndDate,plan.planStatus}}"></div></div>
+						{{/each}}
+			    	</td>
+			    </tr>
+			   	{{/each}}
+			    {{/each}}
+    		</script>
+		</table>
+		<div class="gantt-pages">
+			<div class="gantt-page gantt-page-pre" data-type="0"></div>
+			<div class="gantt-page gantt-page-next" data-type ="1"></div>
+		</div>
+		</div>
+		
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/frozen.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/wheelpicker.min.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/common.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/project.js?v=2017041201008" ></script>
+    <script>
+    	$(function(){
+    		templateFun.proGantt();
+			gantt.init();
+		});
+    </script>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>更多</title>
+ 	<link rel="stylesheet" href="css/frozen.css" />
+ 	<link rel="stylesheet" href="css/main.css" />
+    <body style="background: #fff;">
+    	<ul class="loan-getmore-list">
+    		<script id="getMoreChangeListTemp" type="text/html">
+    		{{each details}}
+    		<li>
+    			<a class="ui-row-flex" href="payments_list.html?repayId={{$value.repayId}}&from=Payable">
+    			<div class="ui-row-flex">
+    				<div class="loan-getmore-date">{{$value.day}}</div>
+    				<div class="ui-col-3 self-omit">{{$value.contractName}}</div>
+    				<div class="ui-col-2 loan-right loan-money self-omit">{{$value.dailyAmount}}元</div>
+    			</div>
+    			</a>
+    		</li>
+    		{{/each}}
+    		</script>
+    		<script id="getMoreListTemp" type="text/html">
+    		{{each dailyDetails}}
+    		<li>
+    			<a class="ui-row-flex" href="payments_list.html?repayId={{$value.repayId}}&from=Payable">
+    			<div class="ui-row-flex">
+    				<div class="ui-col-3 self-omit">{{$value.contractName}}</div>
+    				<div class="ui-col-2 loan-right loan-money self-omit">{{$value.amount}}元</div>
+    			</div>
+    			</a>
+    		</li>
+    		{{/each}}
+    		</script>
+    	</ul>
+    	<div class="ui-loading-wrap">
+		</div>
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js" ></script>
+    <script type="text/javascript" src="js/frozen.js" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js" ></script>
+    <script type="text/javascript" src="js/common.js" ></script>
+    <script type="text/javascript" src="js/main.js" ></script>
+    <script>
+    	$(function(){
+    		loanMoreList.init();
+    		menus();
+		});
+    </script>
+</html>

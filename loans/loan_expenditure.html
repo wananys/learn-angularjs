@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>本月预还</title>
+ 	<link rel="stylesheet" href="css/frozen.css" />
+ 	<link rel="stylesheet" href="css/main.css" />
+    <body>
+    	<ul class="loan-list">
+    		<script id="loanExpenditureTemp" type="text/html">
+    		<li>
+    			<h3 class="loan-list-datetime">{{month}}</h3>
+    			<p class="loan-right loan-money-2">{{totalAmount}}</p>
+    			<p class="loan-right loan-list-title">总金额（元）</p>
+    		</li>
+    		{{each records}}
+    		<li>
+    			<div class="ui-row-flex {{if $value.dailyDetails.length != 0}}more-bottom{{/if}}">
+    				<div class="ui-col">{{$value.day}}</div>
+    				<div class="ui-col loan-right loan-money">{{$value.dailyAmt}}&nbsp;元</div>
+    			</div>
+    			<div class="loan-more-list none">
+    				{{each $value.dailyDetails as row}}
+	    				<a class="ui-row-flex" href="payments_list.html?repayId={{row.repayId}}&from=Payable">
+	    					<div class="ui-col self-omit">{{row.contractName}}</div>
+	    					<div class="ui-col loan-money loan-right">{{row.amount}}&nbsp;元</div>
+	    				</a>
+	    			{{/each}}
+    				{{if $value.hasMore}}
+    					<a href="loan_more_list.html?from=loan_expenditure&moduleType={{moduleType}}&day={{$value.day}}" class="loan-list-getmore">更多</a>
+    				{{/if}}
+    			</div>
+    		</li>
+    		{{/each}}
+    		<div class="ui-loading-wrap">
+			</div>
+    		</script>
+    	</ul>
+    	<input type="hidden" name="loan-keyword" value=""/>
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js" ></script>
+    <script type="text/javascript" src="js/frozen.js" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js" ></script>
+    <script type="text/javascript" src="js/common.js" ></script>
+    <script type="text/javascript" src="js/main.js" ></script>
+    <script>
+    	$(function(){
+			loanExpenditure.init();
+			menus('top');
+    	});
+    </script>
+</html>

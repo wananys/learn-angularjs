@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>支出变更</title>
+ 	<link rel="stylesheet" href="css/frozen.css" />
+ 	<link rel="stylesheet" href="css/wheelpicker.min.css" />
+ 	<link rel="stylesheet" href="css/main.css" />
+    <body>
+    	<div class="loan-selected-year"><span class="self-more">选择年份</span></div>
+    	<ul class="loan-list">
+    		<li>
+    			<h3 class="loan-list-datetime" data-date="">&nbsp;</h3>
+    			<div class="loanExpenditureChangeHeadList">
+    			<script id="loanExpenditureChangeTempHead" type="text/html">
+    			<p class="loan-right loan-money-2">{{totalAmount}}</p>
+    			<div class="loan-list-title ui-row-flex">
+    				<div class="ui-col">数量 {{countByYear}}</div>
+    				<div class="ui-col loan-right">总金额（元）</div>
+    			</div>
+    			</script>
+    			</div>
+    		</li>
+    	</ul>
+    	<ul class="loan-list loanExpenditureChangeHead">
+    		<script id="loanExpenditureChangeTemp" type="text/html">
+    		{{each records}}
+    		<li>
+    			<div class="ui-row-flex {{if $value.detials.length != 0}}more-bottom{{/if}}">
+    				<div class="ui-col">{{$value.month}}</div>
+    				<div class="ui-col loan-right loan-money">{{$value.amount}}元</div>
+    			</div>
+    			<div class="loan-more-list none">
+    				{{each $value.detials as row}}
+    				<a class="ui-row-flex" href="payments_list.html?repayId={{row.repayId}}&from=Payable">
+    					<div class="ui-col self-omit">{{row.day}}&nbsp;&nbsp;{{row.contractName}}</div>
+    					<div class="ui-col loan-money loan-right">{{row.dailyAmount}}元</div>
+    				</a>
+    				{{/each}}
+    				{{if $value.hasMore}}
+    					<a href="loan_more_list.html?from=loan_expenditure_change&month={{$value.month}}" class="loan-list-getmore">更多</a>
+    				{{/if}}
+    			</div>
+    		</li>
+    		{{/each}}
+    		</script>
+    	</ul>
+    	<p class="loan-center loan-list-title self-line">右上角可查看其它年份支出变更</p>
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js" ></script>
+    <script type="text/javascript" src="js/frozen.js" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js" ></script>
+    <script type="text/javascript" src="js/wheelpicker.min.js" ></script>
+    <script type="text/javascript" src="js/common.js" ></script>
+    <script type="text/javascript" src="js/main.js" ></script>
+    <script>
+    	$(function(){
+    		loanExpenditureChange.init();
+    		menus('top');
+		});
+    </script>
+</html>

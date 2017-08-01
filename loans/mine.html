@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>账户信息</title>
+ 	<link rel="stylesheet" href="css/frozen.css" />
+ 	<link rel="stylesheet" href="css/main.css" />
+    <body style="background: #FFFFFF;">
+    	<div class="mine-box">
+    		<script id="mineTemp" type="text/html">
+	    	<div class="ui-row-flex mine-list">
+	    		<div class="ui-col mine-icons name">姓名</div>
+	    		<div class="ui-col loan-right">{{userInfo.name}}</div>
+	    	</div>
+	    	<div class="ui-row-flex mine-list">
+	    		<div class="ui-col mine-icons username">用户名</div>
+	    		<div class="ui-col loan-right">{{userInfo.loginName}}</div>
+	    	</div>
+	    	<div class="ui-row-flex mine-list">
+	    		<div class="ui-col mine-icons phone">手机</div>
+	    		<div class="ui-col loan-right">{{userInfo.mobile}}</div>
+	    	</div>
+	    	<div class="ui-row-flex mine-list mine-roles">
+	    		<div class="ui-col mine-icons role"><span>角色</span></div>
+	    		<!--<div class="ui-col loan-right role-list">{{#userInfo.roles | dueDatesFun}}</div>-->
+	    		<div class="ui-col loan-right role-list">角色</div>
+	    	</div>
+	    	</script>
+    	</div>
+    	<button class="mine-exit">退出</button>
+    	<div class="ui-row-flex index-footer">
+    		<a class="ui-col" href="index.html">
+    			<div class="index-center">
+    				<em class="index-home"></em>
+    				<span>首页</span>
+    			</div>
+    		</a>
+    		<a class="ui-col" href="model.html">
+    			<div class="index-center">
+	    			<em class="index-pro"></em>
+	    			<span>功能</span>
+	    		</div>
+    		</a>
+    		<a class="ui-col" href="mine.html">
+    			<div class="index-center active">
+	    			<em class="index-mine"></em>
+	    			<span>我的</span>
+	    		</div>
+    		</a>
+    	</div>
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js" ></script>
+    <script type="text/javascript" src="js/frozen.js" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js" ></script>
+    <script type="text/javascript" src="js/common.js" ></script>
+    <script type="text/javascript" src="js/main.js" ></script>
+    <script>
+    	$(function(){
+    		templateFun.dueDatesFun();
+			mine.init();
+		});
+    </script>
+</html>

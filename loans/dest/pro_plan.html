@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>计划汇报</title>
+ 	<link rel="stylesheet" href="css/frozen.css?v=2017041201008" />
+ 	<link rel="stylesheet" href="css/main.css?v=2017041201008" />
+    <body>
+    	<div class="loan-search">
+    		<em class="loan-back none"></em>
+    		<input type="search" class="loan-search-ipt" name="search"/>
+    		<span class="loan-search-btn">搜索</span>
+    		<em class="loan-search-clear"></em>
+    	</div>
+    	<ul class="loan-list">
+    		<script id="proPlanTemp" type="text/html">
+    		{{each planScheduleList}}	
+    		<li>
+    			<a href="pro_plan_detail.html?scheduleNo={{$value.scheduleNo}}">
+    				<div class="ui-row-flex">
+    					<h3 class="ui-col ui-col-2 loan-list-name">
+    						<p class="self-omit padding">{{$value.planName}}</p>
+    					</h3>
+    					<div class="ui-col ui-col-1 loan-list-going loan-center {{if $value.planStatus!="02"}}end{{/if}}"><span>{{$value.planStatusDesc}}</span></div>
+    				</div>
+    				<div class="ui-row-flex self-line">
+					    <div class="ui-col self-omit">{{$value.projectName}}</div>
+					    <div class="ui-col loan-center">
+					    	<span class="loan-plan active">{{$value.scheduleContentCount}}</span>个
+					    </div>
+					    <div class="ui-col loan-center loan-list-date">{{$value.planEndDate}}</div>
+					</div>
+					<div class="ui-row-flex loan-list-title">
+					    <div class="ui-col">项目名称</div>
+					    <div class="ui-col loan-center">汇报数量</div>
+					    <div class="ui-col loan-center">到期时间</div>
+					</div>
+    			</a>
+    		</li>
+    		{{/each}}
+    		</script>
+    	</ul>
+    	<div class="ui-loading-wrap">
+		    <p>正在加载中...</p>
+		</div>
+    	<input type="hidden" name="loan-keyword" value=""/>
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/frozen.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/common.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/project.js?v=2017041201008" ></script>
+    <script>
+    	$(function(){
+			proPlan.init();
+			menus();
+		});
+    </script>
+</html>

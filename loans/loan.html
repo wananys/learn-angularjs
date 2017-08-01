@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>贷款合同</title>
+ 	<link rel="stylesheet" href="css/frozen.css" />
+ 	<link rel="stylesheet" href="css/main.css" />
+    <body>
+    	<div class="loan-search">
+    		<em class="loan-back none"></em>
+    		<input type="search" class="loan-search-ipt" name="search"/>
+    		<span class="loan-search-btn">搜索</span>
+    		<em class="loan-search-clear"></em>
+    	</div>
+    	<ul class="loan-list">
+    		<script id="loanList" type="text/html">
+    		{{each loanInfoList}}	
+    		<li>
+    			<a href="loan_list.html?contractId={{$value.contractId}}">
+    				<div class="ui-row-flex">
+    					<h3 class="ui-col ui-col-3 loan-list-name-s">
+    						<p class="self-omit-2 padding">{{$value.contractName}}</p>
+    					</h3>
+    					<div class="ui-col ui-col-1 loan-list-going {{if $value.status=="已结束"}}end{{/if}}"><span>{{$value.status}}</span></div>
+    				</div>
+    				<div class="ui-row-flex self-line loan-companyname">
+					    <div class="ui-col ui-col self-omit"><span class="loan-money">{{$value.loanAmount}}</span>万元</div>
+					    <div class="ui-col ui-col loan-center self-omit"><span class="loan-money">{{$value.loanBalance}}</span>万元</div>
+					    <div class="ui-col ui-col loan-right"><span class="loan-list-title">{{$value.dueDate}}</span></div>
+					</div>
+					<div class="ui-row-flex loan-list-title">
+					    <div class="ui-col ui-col">贷款金额</div>
+					    <div class="ui-col ui-col loan-center">贷款余额</div>
+					    <div class="ui-col ui-col loan-right">到期日期</div>
+					</div>
+    			</a>
+    		</li>
+    		{{/each}}
+    		</script>
+    	</ul>
+    	<div class="ui-loading-wrap">
+		</div>
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js" ></script>
+    <script type="text/javascript" src="js/frozen.js" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js" ></script>
+    <script type="text/javascript" src="js/common.js" ></script>
+    <script type="text/javascript" src="js/module.js" ></script>
+    <script>
+    	$(function(){
+			loan.init();
+		});
+    </script>
+</html>

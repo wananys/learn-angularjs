@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>附件管理</title>
+ 	<link rel="stylesheet" href="css/frozen.css" />
+ 	<link rel="stylesheet" href="css/main.css" />
+    <body class="self-whitebg">
+    	<div class="repay-detail">
+    	<script id="loanAttachmentTemp" type="text/html">
+    	<div class="ui-row-flex repay-detail-title">
+    		{{if attachmentCategoryStatus}}
+    		<div class="ui-col ui-col-1 loan-center">类型</div>
+    		{{/if}}
+		    <div class="ui-col ui-col-2 loan-center">附件名称</div>
+		    <div class="ui-col ui-col-1 loan-center">详细信息</div>
+		</div>
+    	<ul class="repay-detail-list">
+    		{{each attachmentList}}
+    		<li>
+    			<div class="ui-row-flex loan-center">
+    				{{if attachmentCategoryStatus}}
+    				<div class="ui-col ui-col-1 self-omit">{{$value.attachmentCategoryDesc}}</div>
+    				{{/if}}
+		    		<div class="ui-col ui-col-2 self-omit">{{$value.attachmentName}}</div>
+		    		<div class="ui-col ui-col-1"><a href="{{$value.attachmentUrl}}" class="surety-look">查阅</a></div>
+		    	</div>
+    		</li>
+    		{{/each}}
+    		
+    	</ul>
+    	</script>
+    	</div>
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js" ></script>
+    <script type="text/javascript" src="js/frozen.js" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js" ></script>
+    <script type="text/javascript" src="js/common.js" ></script>
+    <script type="text/javascript" src="js/main.js" ></script>
+    <script>
+    	$(function(){
+			loanAttachment.init();
+			menus();
+		});
+    </script>
+</html>

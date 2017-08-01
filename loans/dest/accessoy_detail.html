@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>附件管理</title>
+ 	<link rel="stylesheet" href="css/frozen.css?v=2017041201008" />
+ 	<link rel="stylesheet" href="css/main.css?v=2017041201008" />
+    <body class="loan-detail">
+    	<div class="accessoryDetail">
+    		<script id="accessoryDetailTemp" type="text/html">
+    		<p class="repay-detail-name">名称</p>
+			<ul class="more-list" style="margin: 0;">
+		    	<li>
+		    		<a href="{{attachmentUrl}}">
+				    <div class="ui-row-flex self-omit">
+				    	<div class="ui-col ui-col-2">{{attachmentName}}</div>
+				    	<div class="ui-col self-more loan-right">查看</div>
+				    </div>
+				    </a>
+		    	</li>
+		    </ul>
+		    <p class="repay-detail-name">来源</p>
+	    	<ul class="accessory-list">
+	    		
+	    		{{each records}}
+	    			<li class="self-omit"><a href="{{if $value.relatedCategory == 'Contract'}}loan_list.html?contractId={{else if $value.relatedCategory == 'RepayPayable' || $value.relatedCategory == 'RepayActual'}}payments_list.html?repayId={{else if $value.relatedCategory == 'Clause'}}loan_clause_list.html?clauseId={{else if $value.relatedCategory == 'Node'}}loan_node_list.html?nodeId={{else if $value.relatedCategory == 'Guarantee'}}surety_guaranteeInfo_list.html?guaranteeId={{else if $value.relatedCategory == 'GuaranteeThing'}}surety_loanThings_list.html?thingId={{else if $value.relatedCategory == 'Debtor'}}loan_debtor_list.html?debtorId={{else if $value.relatedCategory == 'Project'}}pro_info_detail.html?projectNo={{else if $value.relatedCategory == 'ProjectPlan'}}pro_play_detail.html?planNo={{else if $value.relatedCategory == 'PlanReport'}}pro_plan_detail.html?scheduleNo={{/if}}{{$value.relatedKey}}">{{$value.relatedDesc}}</a></li>
+	    		{{/each}}
+	    	</ul>
+    	</script>
+    	</div>
+    	<div class="ui-loading-wrap">
+		</div>
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/frozen.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/common.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/main.js?v=2017041201008" ></script>
+    <script>
+    	$(function(){
+    		accessory_detail.init();
+    		menus();
+    	});
+    </script>
+</html>

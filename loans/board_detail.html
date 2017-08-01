@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>资金流水</title>
+ 	<link rel="stylesheet" href="css/frozen.css" />
+ 	<link rel="stylesheet" href="css/main.css" />
+    <body style="background-color: #f8f8f8;">
+    	<div id="boardDetail">
+    	<script id="boardDetailTemp" type="text/html">
+    	<div class="board-head board-detail">
+    		<span class="board-head-info"></span>
+    		<div class="board-head-bank self-omit">
+    			<img src="{{bankLogo}}" class="board-head-icon"/>{{bankName}}({{bankCardTailNo}})</div>
+    		<p class="board-head-title">当前银行余额(元)</p>
+    		<div class="board-head-money">￥{{balance}}</div>
+    		<div class="ui-row-flex">
+    			<div class="ui-col board-head-datetime">{{dateRange}}</div>
+    			<div class="ui-col ui-col-2 self-right">流入&nbsp;&nbsp;&nbsp;&nbsp;{{inflowAmt}}</div>
+    		</div>
+    		<div class="ui-row-flex">
+    			<div class="ui-col self-omit">{{subsidiaryName}}</div>
+    			<div class="ui-col self-right">流出&nbsp;&nbsp;&nbsp;&nbsp;{{outflowAmt}}</div>
+    		</div>
+    	</div>
+    	<ul class="board-detail-list">
+    		{{each records as record}}
+    		<li>
+    			<div class="board-detail-head ui-row-flex">
+    				<div class="board-detail-date">{{record.day}}</div>
+    				<div class="ui-col">
+    					<p>流入</p>
+    					<p>流出</p>
+    				</div>
+    				<div class="ui-col self-right">
+    					<p class="board-list-money">+{{record.dailyInAmt}}</p>
+    					<p>-{{record.dailyOutAmt}}</p>
+    				</div>
+    				<span class="board-detail-more {{if record.dailyDetails.length==0}}hidden{{/if}}"></span>
+    			</div>
+    			<ul class="board-detail-hidden none">
+    				{{each record.dailyDetails as detail}}
+    				<li class="ui-row-flex">
+    					<p class="ui-col">{{detail.transationTime}}</p>
+    					<p class="ui-col ui-col-3 self-omit">{{detail.note}}</p>
+    					<p class="ui-col ui-col-2 self-right self-omit {{if detail.inOrOut == 0}}board-list-money{{/if}}">{{if detail.inOrOut == 0}}+{{else}}-{{/if}}{{detail.transationAmt}}</p>
+    				</li>
+    				{{/each}}
+    			</ul>
+    		</li>
+    		{{/each}}
+    	</ul>
+    	<div class="ui-dialog" id="model-tags">
+		    <div class="ui-dialog-cnt rm-dialog">
+		        <div class="rm-dialog-bd">
+		            <h4 class="rm-dialog-title">标签</h4>
+		            <div class="rm-dialog-tags">
+		            	{{#bankCardLabels | getBoardTags}}
+		            </div>
+		            
+			        <div class="ui-dialog-ft ui-btn-group rm-dialog-close" style="margin: 0;">
+			            <button type="button">关闭</button> 
+			        </div>
+			    </div>
+		    </div>        
+		</div>
+    	</script>
+    	</div>
+    	<div class="ui-loading-wrap">
+		    <p>正在加载中...</p>
+		</div>
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js" ></script>
+    <script type="text/javascript" src="js/frozen.js" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js" ></script>
+    <script type="text/javascript" src="js/common.js" ></script>
+    <script type="text/javascript" src="js/main.js" ></script>
+    <script>
+    	$(function(){
+    		templateFun.getBoardTags();
+			boardDetail.init();
+			menus();
+		});
+    </script>
+</html>

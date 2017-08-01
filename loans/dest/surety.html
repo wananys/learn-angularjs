@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>担保信息</title>
+ 	<link rel="stylesheet" href="css/frozen.css?v=2017041201008" />
+ 	<link rel="stylesheet" href="css/main.css?v=2017041201008" />
+    <body>
+    	<div class="loan-search">
+    		<em class="loan-back none"></em>
+    		<input type="search" class="loan-search-ipt" name="search"/>
+    		<span class="loan-search-btn">搜索</span>
+    		<em class="loan-search-clear"></em>
+    	</div>
+    	<div class="ui-tab" id="repay-detail">
+    	<ul class="ui-row-flex loan-detail-title loan-center">
+		    <li class="ui-col guaranteeInfoTab" data-type = "guaranteeInfo">担保合同</li>
+		    <li class="ui-col loanThingsTab" data-type = "loanThings">担保物</li>
+		</ul>
+    	<ul class="ui-tab-content">
+    		<li  class="guaranteeInfoList none">
+		    	<ul class="loan-list">
+		    		<script type="text/html" id="guaranteeInfoTemp">
+		    		{{each guaranteeInfoList}}	
+		    		<li>
+		    			<a href="surety_guaranteeInfo_list.html?guaranteeId={{$value.guaranteeId}}">
+		    				<div class="ui-row-flex">
+		    					<h3 class="ui-col ui-col-2 loan-list-name-s">
+		    						<p class="self-omit-2">{{$value.guaranteeName}}</p>
+		    					</h3>
+		    					<div class="ui-col ui-col-1 loan-list-going"><span>{{$value.guaranteeType}}</span></div>
+		    				</div>
+		    				<div class="ui-row-flex loan-companyname ">
+							    <div class="ui-col ui-col-2 self-omit self-line">{{$value.debtorName}}</div>
+							    <div class="ui-col loan-center loan-list-title"><span class="self-num">{{$value.thingsCount}}</span>&nbsp;个</div>
+							</div>
+							<div class="ui-row-flex loan-list-title">
+							    <div class="ui-col ui-col-2">借款人</div>
+							    <div class="ui-col loan-center">担保物</div>
+							</div>
+		    			</a>
+		    		</li>
+		    		{{/each}}
+		    		</script>
+		    	</ul>
+		    	<div class="ui-loading-wrap">
+				</div>
+		    </li>
+		    <li  class="loanThingsList none">
+		    	<ul class="loan-list">
+		    		<script type="text/html" id="loanThingsTemp">
+			    		{{each thingsList}}	
+			    		<li>
+			    			<a href="surety_loanThings_list.html?thingId={{$value.thingId}}">
+			    				<div class="ui-col ui-col-1 loan-list-status"><span class="{{if $value.status=='01' || $value.status=='04'}}unused{{else if $value.status=='02'}}using{{else if $value.status=='03'}}scheduling{{/if}}">{{$value.statusDesc}}</span></div>
+			    				<div class="ui-row-flex active">
+									<div class="ui-col ui-col-2 sure-date"><span class="loan-plan active">{{$value.scheduleCount}}</span> 期</div>
+									<div class="ui-col ui-col-3 self-omit-2">{{$value.thingName}}</div>
+								</div>
+								<div class="ui-row-flex loan-list-title">
+									<div class="ui-col ui-col-2">排期记录</div>
+									<div class="ui-col ui-col-3">担保物</div>
+								</div>
+			    			</a>
+			    		</li>
+			    		{{/each}}
+			    	</script>
+		    	</ul>
+		    	<div class="ui-loading-wrap">
+				</div>
+		    </li>
+    	</ul>
+    	</div>
+    	
+    	<!---------------------------单个担保物（不同于担保信息中的担保物列表）---------------------------->
+    	<div  class="singleLoanThingsList none">
+    	<ul class="loan-list">
+    		<script type="text/html" id="singleLoanThingsTemp">
+    		{{each thingsList}}	
+    		<li>
+    			<a href="surety_loanThings_list.html?thingId={{$value.thingId}}">
+    				<div class="ui-col ui-col-1 loan-list-going {{if $value.status == '01' || $value.status == '04'}}end{{else if $value.status == '03'}}normal{{/if}}"><span>{{$value.statusDesc}}</span></div>
+    				<div class="ui-row-flex active">
+						<div class="ui-col ui-col-2 sure-date">{{$value.beginDate}}至<div class="loan-right">{{$value.endDate}}</div></div>
+						<div class="ui-col ui-col-3 self-omit-2">{{$value.thingName}}</div>
+					</div>
+					<div class="ui-row-flex loan-list-title">
+						<div class="ui-col ui-col-2">期限</div>
+						<div class="ui-col ui-col-3">担保物</div>
+					</div>
+    			</a>
+    		</li>
+    		{{/each}}
+    		</script>
+    	</ul>
+    	<div class="ui-loading-wrap">
+		</div>
+    	</div>
+    	
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/frozen.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/common.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/module.js?v=2017041201008" ></script>
+    <script>
+    	$(function(){
+			surety.init();
+			menus();
+		});
+    </script>
+</html>

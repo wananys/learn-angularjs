@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>担保物详情</title>
+ 	<link rel="stylesheet" href="css/frozen.css?v=2017041201008" />
+ 	<link rel="stylesheet" href="css/main.css?v=2017041201008" />
+    <body class="loan-detail">
+    	<div class="ui-row-flex loan-detail-title">
+		    <div class="ui-col ui-col-1">名称</div>
+		    <div class="ui-col ui-col-2 loan-center">详细信息</div>
+		</div>
+		<div id="suretyGuarantyDetail">
+		<script type="text/html" id="suretyGuarantyTemp">
+    	<ul class="loan-detail-list">
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">担保物名称</div>
+		    		<div class="ui-col ui-col-2">{{thingInfo.thingName}}</div>
+		    	</div>
+    		</li>
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">担保物编号</div>
+		    		<div class="ui-col ui-col-2">{{thingInfo.thingNo}}</div>
+		    	</div>
+    		</li>
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">当前状态</div>
+		    		<div class="ui-col ui-col-2 loan-money">{{thingInfo.statusDesc}}</div>
+		    	</div>
+    		</li>
+    		
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">价值</div>
+		    		<div class="ui-col ui-col-2">{{thingInfo.thingValue}} 元</div>
+		    	</div>
+    		</li>
+    		
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">详情描述</div>
+		    		<div class="ui-col ui-col-2">{{thingInfo.thingDetail}}</div>
+		    	</div>
+    		</li>
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">备注信息</div>
+		    		<div class="ui-col ui-col-2">{{thingInfo.remark}}</div>
+		    	</div>
+    		</li>
+    	</ul>
+    	<ul class="more-list" style="margin-top: 1px;">
+	    	<li>
+	    		<a href="loan_attachment.html?relatedCategory=GuaranteeThing&relatedKey={{thingInfo.thingId}}">
+			    <div class="ui-row-flex">
+			    	<div class="ui-col">附件管理</div>
+			    	<div class="ui-col ui-col-2 loan-view">查看<span class="self-more"></span></div>
+			    </div>
+			    </a>
+	    	</li>
+	    </ul>
+    	</script>
+    	</div>
+    	
+    	<p class="repay-detail-name">担保排期</p>
+    	
+    	<ul class="loan-detail-list" id="suretyScheduleList">
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-2">起始时间</div>
+		    		<div class="ui-col ui-col-2">结束时间</div>
+		    		<div class="ui-col">状态</div>
+		    		<div class="ui-col">合同</div>
+		    	</div>
+    		</li>
+    		<script type="text/html" id="suretyScheduleTemp">
+    		{{each thingSchedule}}
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-2">{{$value.beginDate}}</div>
+		    		<div class="ui-col ui-col-2">{{$value.endDate}}</div>
+		    		<div class="ui-col">{{$value.statusDesc}}</div>
+		    		<div class="ui-col"><a href="surety_guaranteeInfo_list.html?guaranteeId={{$value.guaranteeId}}">查看</a></div>
+		    	</div>
+    		</li>
+    		{{/each}}
+    		</script>
+    	</ul>
+    	
+    	
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/frozen.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/common.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/module.js?v=2017041201008" ></script>
+    <script>
+    	$(function(){
+			suretyGuarantyList.init();
+			menus();
+		});
+    </script>
+</html>

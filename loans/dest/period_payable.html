@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>还款周期表</title>
+ 	<link rel="stylesheet" href="css/frozen.css?v=2017041201008" />
+ 	<link rel="stylesheet" href="css/wheelpicker.min.css?v=2017041201008" />
+ 	<link rel="stylesheet" href="css/main.css?v=2017041201008" />
+    <body class="self-whitebg">
+    	<div class="loan-search">
+    		<em class="loan-back none"></em>
+    		<input type="search" class="loan-search-ipt" name="search"/>
+    		<span class="loan-search-btn">搜索</span>
+    		<em class="loan-search-clear"></em>
+    	</div>
+    	<div class="ui-row-flex period-head">
+    		<div class="period-company">金额(万元)</div>
+    		<div class="ui-col period-list-month curr-month0 none">1</div>
+			<div class="ui-col period-list-month curr-month1 none">2</div>
+			<div class="ui-col period-list-month curr-month2 none">3</div>
+			<div class="ui-col period-list-month curr-month3 none">4</div>
+    		<div class="ui-col period-list-month curr-month4 none">5</div>
+			<div class="ui-col period-list-month curr-month5 none">6</div>
+			<div class="ui-col period-list-month curr-month6 none">7</div>
+			<div class="ui-col period-list-month curr-month7 none">8</div>
+    		<div class="ui-col period-list-month curr-month8 none">9</div>
+			<div class="ui-col period-list-month curr-month9 none">10</div>
+			<div class="ui-col period-list-month curr-month10 none">11</div>
+			<div class="ui-col period-list-month curr-month11 none">12</div>
+			<div class="ui-col period-list-quarter quarter0">1-3</div>
+			<div class="ui-col period-list-quarter quarter1">4-6</div>
+			<div class="ui-col period-list-quarter quarter2">7-9</div>
+			<div class="ui-col period-list-quarter quarter3">10-12</div>
+			<div class="ui-col period-list-year none">1-12</div>
+    	</div>
+    	<div style="padding-bottom: .8rem;">
+    		<ul class="period-list" id="period">
+				<script type="text/html" id="periodTemp">
+					{{each records}}
+					<li class="ui-row-flex" data-debtorid={{$value.debtorId}}>
+						<a href="javascript:void(0);" class="period-company"><p class="period-company-i self-omit-2">{{$value.debtorName}}</p></a>
+						{{each $value.monthDataList as month}}
+						<a class="ui-col period-list-month none curr-month{{$index}} self-omit" data-from='{{month.repayDateFrom}}' data-to='{{month.repayDateTo}}'>{{month.repayAmount}}</a>
+						{{/each}}
+						{{each $value.quarterDataList as quarter}}
+						<a class="ui-col period-list-quarter quarter{{$index}} self-omit"  data-from='{{quarter.repayDateFrom}}' data-to='{{quarter.repayDateTo}}'>{{quarter.repayAmount}}</a>
+						{{/each}}
+						<a class="ui-col period-list-year none self-omit" data-from='{{$value.yearData.repayDateFrom}}' data-to='{{$value.yearData.repayDateTo}}'>{{$value.yearData.repayAmount}}</a>
+					</li>
+					{{/each}}
+				</script>
+	    	</ul>
+	    	<div class="ui-loading-wrap">
+			    <p>正在加载中...</p>
+			</div>
+    	</div>
+		<input type="hidden" name="loan-status" value='0'/>
+    	<input type="hidden" name="loan-keyword" value=""/>
+    	<div class="period-footer ui-row-flex">
+    		<div class="period-quarter-box">
+    			<div class="period-quarter"></div>
+    			<ul class="period-quarter-list none">
+	    			<li data-type=1>第1季度</li>
+	    			<li data-type=2>第2季度</li>
+	    			<li data-type=3>第3季度</li>
+	    			<li data-type=4>第4季度</li>
+	    		</ul>
+    		</div>
+    		<div class="period-date ui-col ui-col-2" data-date=""></div>
+    		<div class="ui-col period-year" data-type=0>年</div>
+    		<div class="ui-col active period-year"  data-type=1>季</div>
+    	</div>
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/frozen.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/wheelpicker.min.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/common.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/module.js?v=2017041201008" ></script>
+    <script>
+    	$(function(){
+    		period.init();
+    		menus();
+    	});
+    </script>
+</html>

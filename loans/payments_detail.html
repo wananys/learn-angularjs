@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>还款详情</title>
+ 	<link rel="stylesheet" href="css/frozen.css" />
+ 	<link rel="stylesheet" href="css/main.css" />
+    <body class="repay-detail self-whitebg">
+    	<div class="ui-tab" id="repay-detail">
+    		
+		    <ul class="ui-row-flex loan-detail-title loan-center" id="repayment-menu">
+		        <li class="current ui-col tab-Payable" data-type='Payable'>计划还款明细</li>
+		        <li class="ui-col tab-Actual" data-type='Actual'>实际支出明细</li>
+		    </ul>
+		    
+		    <ul class="ui-tab-content" id="repaymentBox">
+		    	<script id="repayment_detail" type="text/html">
+		        <li class="tempPayable">
+		        	<ul class="rm-detail-title">
+		        		<li>
+		        			<div class="ui-row-flex ">
+							    <div class="ui-col">总贷款（万）</div>
+							    <div class="ui-col loan-center">总利息（万）</div>
+							    <div class="ui-col loan-center">总还款（万）</div>
+							    <div class="ui-col loan-center">还款期数</div>
+							</div>
+		        		</li>
+		        		<li>
+		        			<div class="ui-row-flex ">
+							    <div class="ui-col  loan-txt">{{dataSource.loanAmount}}</div>
+							    <div class="ui-col loan-center loan-txt">{{dataSource.interestAmount}}</div>
+							    <div class="ui-col loan-center loan-txt">{{dataSource.repaymentAmount}}</div>
+							    <div class="ui-col loan-center loan-txt">{{dataSource.periods}}</div>
+							</div>
+		        		</li>
+		        	</ul>
+		        	<p class="rm-explain"><span id="rm-explain-model" data-tab="0">说明</span></p>
+		        	<div class="ui-row-flex rm-head">
+		        		<div class="ui-col loan-center">期限</div>
+		        		<div class="ui-col ui-col-2 loan-center">还款金额</div>
+		        		<div class="ui-col ui-col-2 loan-center repay-change" data-type=0>本金余额</div>
+		        	</div>
+		        	{{each dataSource.details}}
+		        	<p class="rm-list-date">{{$value.year}}</p>
+			    	<ul class="rm-detail-list" id="repay-tab0">
+			    		{{each $value.records as item}}
+			    		<li class="active {{if item.repayStatus =='01'}}unpaid{{else if item.repayStatus =='02'}}finish{{else if item.repayStatus =='03'}}change{{/if}}">
+			    			<a href="payments_detail_list.html?repayId={{item.repayId}}&from=Payable">
+			    			<div class="ui-row-flex">
+					    		<div class="ui-col ui-col-2">
+					    		{{if item.repayType == '01'}}
+					    		<span class="rm-icon type1">息</span>
+					    		{{else if item.repayType == '02'}}
+					    		<span class="rm-icon type2">固</span>
+					    		{{else if item.repayType == '03'}}
+					    		<span class="rm-icon type3">头</span>
+					    		{{else if item.repayType == '04'}}
+					    		<span class="rm-icon type4">季</span>
+					    		{{else if item.repayType == '05'}}
+					    		<span class="rm-icon type5">本</span>
+					    		{{else if item.repayType == '06'}}
+					    		<span class="rm-icon type6">保</span>
+					    		{{/if}}
+					    		{{item.repayDate}}</div>
+					    		<div class="ui-col ui-col-2 self-omit loan-right">{{item.repayAmount}}</div>
+					    		<div class="ui-col ui-col-2 self-omit loan-right loanBalance">{{item.loanBalance}}</div>
+					    		<div class="ui-col ui-col-2 self-omit loan-right none surplusAmount">{{item.surplusAmount}}</div>
+			    			</div>
+			    			</a>
+			    		</li>
+			    		{{/each}}
+			    	</ul>
+			    	{{/each}}
+		        </li>
+		        <li class="tempActual none">
+		        	<ul class="rm-detail-title">
+		        		<li>
+		        			<div class="ui-row-flex ">
+							    <div class="ui-col">总贷款（万）</div>
+							    <div class="ui-col loan-center">总利息（万）</div>
+							    <div class="ui-col loan-center">总还款（万）</div>
+							    <div class="ui-col loan-center">还款期数</div>
+							</div>
+		        		</li>
+		        		<li>
+		        			<div class="ui-row-flex ">
+							    <div class="ui-col  loan-txt">{{dataSource.loanAmount}}</div>
+							    <div class="ui-col loan-center  loan-txt">{{dataSource.interestAmount}}</div>
+							    <div class="ui-col loan-center  loan-txt">{{dataSource.repaymentAmount}}</div>
+							    <div class="ui-col loan-center  loan-txt">{{dataSource.periods}}</div>
+							</div>
+		        		</li>
+		        	</ul>
+		        	<p class="rm-explain"><span id="rm-explain-model" data-tab="1">说明</span></p>
+		        	<div class="ui-row-flex rm-head">
+		        		<div class="ui-col loan-center">期限</div>
+		        		<div class="ui-col ui-col-2 loan-center">还款金额</div>
+		        		<div class="ui-col ui-col-2 loan-center">本金余额</div>
+		        		<!--<div class="ui-col loan-center">收款账户</div>-->
+		        	</div>
+		        	{{each dataSource.details}}
+		        	<p class="rm-list-date">{{$value.year}}</p>
+			    	<ul class="rm-detail-list" id="repay-tab0">
+			    		{{each $value.records as item}}
+			    		<li>
+			    			<a href="payments_detail_list.html?repayId={{item.repayId}}&from=Actual">
+			    			<div class="ui-row-flex">
+					    		<div class="ui-col ui-col-2">
+					    		{{if item.repayType == '01'}}
+					    		<span class="rm-icon type1">息</span>
+					    		{{else if item.repayType == '02'}}
+					    		<span class="rm-icon type2">固</span>
+					    		{{else if item.repayType == '03'}}
+					    		<span class="rm-icon type3">头</span>
+					    		{{else if item.repayType == '04'}}
+					    		<span class="rm-icon type4">季</span>
+					    		{{else if item.repayType == '05'}}
+					    		<span class="rm-icon type5">本</span>
+					    		{{else if item.repayType == '06'}}
+					    		<span class="rm-icon type6">保</span>
+					    		{{/if}}
+					    		{{item.repayDate}}</div>
+					    		<div class="ui-col ui-col-3 loan-right self-omit">{{item.repayAmount}}</div>
+					    		<div class="ui-col ui-col-3 loan-right self-omit">{{item.loanBalance}}</div>
+					    		<!--<div class="ui-col self-omit loan-center acc-more" data-acc='{{item.accountNo}},{{item.accountName}},{{item.bankCardNo}},{{item.bankName}}'>更多</div>-->
+			    			</div>
+			    			</a>
+			    		</li>
+			    		{{/each}}
+			    	</ul>
+			    	{{/each}}
+		        </li>
+		        </script>
+		    </ul>
+    		
+		</div>
+		<div class="ui-dialog" id="model-explain">
+		    <div class="ui-dialog-cnt rm-dialog">
+		        <div class="rm-dialog-bd">
+		            <h4 class="rm-dialog-title">类型说明</h4>
+		            <ul class="rm-dialog-list">
+		            	<li class="ui-row-flex">
+		            		<div class="ui-col ui-col-1 rm-list-left"><span class="rm-icon type5">本</span></div>
+		            		<div class="ui-col ui-col-2 rm-list-right">还本</div>
+		            	</li>
+		            	<li class="ui-row-flex">
+		            		<div class="ui-col ui-col-1 rm-list-left"><span class="rm-icon type1">息</span></div>
+		            		<div class="ui-col ui-col-2 rm-list-right">付息</div>
+		            	</li>
+		            	<li class="ui-row-flex">
+		            		<div class="ui-col ui-col-1 rm-list-left"><span class="rm-icon type3">头</span></div>
+		            		<div class="ui-col ui-col-2 rm-list-right">头息</div>
+		            	</li>
+		            	<li class="ui-row-flex">
+		            		<div class="ui-col ui-col-1 rm-list-left"><span class="rm-icon type2">固</span></div>
+		            		<div class="ui-col ui-col-2 rm-list-right">固定利息</div>
+		            	</li>
+		            	<li class="ui-row-flex">
+		            		<div class="ui-col ui-col-1 rm-list-left"><span class="rm-icon type4">季</span></div>
+		            		<div class="ui-col ui-col-2 rm-list-right">季度付息</div>
+		            	</li>
+		            	<li class="ui-row-flex">
+		            		<div class="ui-col ui-col-1 rm-list-left"><span class="rm-icon type6">保</span></div>
+		            		<div class="ui-col ui-col-2 rm-list-right">保障基金</div>
+		            	</li>
+		            </ul>
+		            <div class="rm-status none">
+		            <h4 class="rm-dialog-title">状态说明</h4>
+		            <div class="rm-status">
+		            	<span class="finish">已还款</span>
+		            	<span class="change">支付变更</span>
+		            	<span class="unpaid">未还款</span>
+		            </div>
+		            </div>
+			        <div class="ui-dialog-ft ui-btn-group rm-dialog-close">
+			            <button type="button">关闭</button> 
+			        </div>
+			    </div>
+		    </div>        
+		</div>
+		
+		<div class="ui-dialog" id="model-more">
+		    <div class="ui-dialog-cnt rm-dialog">
+		        <div class="rm-dialog-bd">
+		            <h4 class="rm-dialog-title">账户信息：</h4>
+		            <ul class="rm-dialog-list">
+		            	<li class="ui-row-flex">
+		            		<div class="ui-col ui-col-1 rm-list-left">账户编号</div>
+		            		<div class="ui-col ui-col-2 rm-list-right m-accNo"></div>
+		            	</li>
+		            	<li class="ui-row-flex">
+		            		<div class="ui-col ui-col-1 rm-list-left">账户名称</div>
+		            		<div class="ui-col ui-col-2 rm-list-right m-accName"></div>
+		            	</li>
+		            	<li class="ui-row-flex">
+		            		<div class="ui-col ui-col-1 rm-list-left">结算账号</div>
+		            		<div class="ui-col ui-col-2 rm-list-right m-bankCardNo"></div>
+		            	</li>
+		            	<li class="ui-row-flex">
+		            		<div class="ui-col ui-col-1 rm-list-left">开户行</div>
+		            		<div class="ui-col ui-col-2 rm-list-right m-bankName"></div>
+		            	</li>
+		            </ul>
+			        <div class="ui-dialog-ft ui-btn-group rm-dialog-close">
+			            <button type="button">我知道了</button> 
+			        </div>
+			    </div>
+		    </div>        
+		</div>
+		<!--<div class="rm-tips">点击单条信息可查询详情</div>-->
+		<input type="hidden" id="repayCategoryId" value=""/>
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js" ></script>
+    <script type="text/javascript" src="js/frozen.js" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js" ></script>
+    <script type="text/javascript" src="js/common.js" ></script>
+    <script type="text/javascript" src="js/module.js" ></script>
+    <script>
+    	$(function(){
+			paymentsDetail.init();
+			menus();
+		});
+    </script>
+</html>

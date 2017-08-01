@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>借款人信息</title>
+ 	<link rel="stylesheet" href="css/frozen.css" />
+ 	<link rel="stylesheet" href="css/main.css" />
+    <body>
+    	<div class="loan-search">
+    		<em class="loan-back none"></em>
+    		<input type="search" class="loan-search-ipt" name="search"/>
+    		<span class="loan-search-btn">搜索</span>
+    		<em class="loan-search-clear"></em>
+    	</div>
+    	<ul class="loan-list">
+    		<script id="loanDebtorTemp" type="text/html">
+    		{{each loanDebtorList}}	
+    		<li>
+    			<a href="loan_debtor_detail.html?debtorId={{$value.debtorId}}">
+    				<div class="ui-row-flex">
+    					<h3 class="ui-col ui-col-2 loan-list-name self-omit">{{$value.debtorName}}</h3>
+    				</div>
+    				<div class="ui-row-flex loan-companyname self-line">
+					    <div class="ui-col ui-col-2 self-omit"><span class="loan-plan active">{{$value.loanAmountTotal}}</span>万元</div>
+					    <div class="ui-col loan-center self-omit"><span class="loan-plan active">{{$value.loanCount}}</span>笔</div>
+    				</div>
+					<div class="ui-row-flex loan-list-title">
+					    <div class="ui-col ui-col-2">借款总金额</div>
+					    <div class="ui-col ui-col-1 loan-center">借款笔数</div>
+					</div>
+    			</a>
+    		</li>
+    		{{/each}}
+    		</script>
+    	</ul>
+    	<div class="ui-loading-wrap">
+		</div>
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js" ></script>
+    <script type="text/javascript" src="js/frozen.js" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js" ></script>
+    <script type="text/javascript" src="js/common.js" ></script>
+    <script type="text/javascript" src="js/module.js" ></script>
+    <script>
+    	$(function(){
+			loanDebtor.init();
+			menus('top');
+		});
+    </script>
+</html>

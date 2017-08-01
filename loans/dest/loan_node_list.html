@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>节点详情</title>
+ 	<link rel="stylesheet" href="css/frozen.css?v=2017041201008" />
+ 	<link rel="stylesheet" href="css/main.css?v=2017041201008" />
+    <body class="loan-detail" style="background: #FFFFFF;">
+    	<div class="ui-row-flex loan-detail-title">
+		    <div class="ui-col ui-col-1">名称</div>
+		    <div class="ui-col ui-col-2 loan-center">详细信息</div>
+		</div>
+		<div id="nodeList">
+		<script type="text/html" id="nodeListTemp">
+    	<ul class="loan-detail-list">
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">节点名称</div>
+		    		<div class="ui-col ui-col-2">{{dataSource.loanNode.nodeName}}</div>
+		    	</div>
+    		</li>
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">节点类型</div>
+		    		<div class="ui-col ui-col-2">销售节点</div>
+		    	</div>
+    		</li>
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">状态</div>
+		    		<div class="ui-col ui-col-2">{{dataSource.loanNode.nodeStatusDesc}}</div>
+		    	</div>
+    		</li>
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">节点日期</div>
+		    		<div class="ui-col ui-col-2">{{dataSource.loanNode.nodeDate}}</div>
+		    	</div>
+    		</li>
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">贷款合同</div>
+		    		<div class="ui-col ui-col-2">{{dataSource.loanNode.contractName}}</div>
+		    	</div>
+    		</li>
+    		{{if dataSource.loanNode.nodeCategory=='SaleNode'}}
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">金额指标</div>
+		    		<div class="ui-col ui-col-2">{{dataSource.loanNode.amountIndex}}</div>
+		    	</div>
+    		</li>
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">备注</div>
+		    		<div class="ui-col ui-col-2">{{dataSource.loanNode.remark}}</div>
+		    	</div>
+    		</li>
+    		{{/if}}
+    		{{if dataSource.loanNode.nodeCategory=='ProjectNode'}}
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">工程进度</div>
+		    		<div class="ui-col ui-col-2">{{dataSource.loanNode.projectProgress}}</div>
+		    	</div>
+    		</li>
+    		{{/if}}
+    		{{if dataSource.loanNode.nodeCategory=='OtherNode'}}
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">节点内容</div>
+		    		<div class="ui-col ui-col-2">{{dataSource.loanNode.nodeContent}}</div>
+		    	</div>
+    		</li>
+    		{{/if}}
+    		<li class="node">
+    			<a href="loan_attachment.html?relatedCategory=Node&relatedKey={{dataSource.loanNode.nodeId}}">
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">节点附件</div>
+		    		<div class="ui-col ui-col-2 loan-view">查看<span class="self-more"></span></div>
+		    	</div>
+				</a>
+    		</li>
+    		{{if dataSource.loanNode.nodeStatus=='03'&&dataSource.loanNode.subNodeId}}
+    		<li class="node">
+    			<a href="loan_node_list.html?nodeId={{dataSource.loanNode.subNodeId}}&status={{dataSource.loanNode.nodeCategory}}">
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">下级节点</div>
+		    		<div class="ui-col ui-col-2 loan-view">查看<span class="self-more"></span></div>
+		    	</div>
+				</a>
+    		</li>
+    		{{/if}}
+    		<li class="node">
+    			<a href="loan_node_report.html?nodeId={{dataSource.loanNode.nodeId}}">
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">节点汇报</div>
+		    		<div class="ui-col ui-col-2 loan-view">查看<span class="self-more"></span></div>
+		    	</div>
+				</a>
+    		</li>
+    	</ul>
+    	</script>
+    	</div>
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/frozen.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/common.js?v=2017041201008" ></script>
+    <script type="text/javascript" src="js/module.js?v=2017041201008" ></script>
+    <script>
+    	$(function(){
+			loanNodeList.init();
+			menus('home');
+		});
+    </script>
+</html>

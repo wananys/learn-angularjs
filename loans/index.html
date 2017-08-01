@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>融资管理</title>
+ 	<link rel="stylesheet" href="css/frozen.css" />
+ 	<link rel="stylesheet" href="css/main.css" />
+    <body style="background: #FFFFFF;">
+    	<div class="index-body">
+    		
+    		<div class="index-head">
+		    	<img src="image/index/logo.png" class="index-logo"/>
+		    	<a href="search.html"><img src="image/index/search.png" class="index-search"/></a>
+    		</div>
+    		<div class="index-boxes">
+    		<script type="text/html" id="indexTemp">
+    		<div class="index-box">
+	    		<a class="index-box-left loan" href="loan.html">贷款合同</a>
+	    		<div class="ui-row-flex index-box-right">
+	    			<a class="ui-col" href="loan.html?contractType=newContract">
+	    				<span>{{contractInfo.newContracts}}</span>
+	    				<p>新增合同</p>
+	    			</a>
+	    			<a class="ui-col" href="loan.html?contractType=currentMonthExpires">
+	    				<span>{{contractInfo.currentMonthExpires}}</span>
+	    				<p>本月到期</p>
+	    			</a>
+	    		</div>
+	    		<div class="ui-row-flex index-box-right">
+	    			<a class="ui-col" href="loan.html?contractType=ongoing">
+	    				<span>{{contractInfo.ongoing}}</span>
+	    				<p>进行中</p>
+	    			</a>
+	    			<a class="ui-col" href="loan.html?contractType=end">
+	    				<span>{{contractInfo.end}}</span>
+	    				<p>已结束</p>
+	    			</a>
+	    		</div>
+	    	</div>
+	    	<div class="index-box">
+	    		<a class="index-box-left plan" href="payments.html">支出计划</a>
+	    		<div class="ui-row-flex index-box-right">
+	    			<a class="ui-col" href="loan_expenditure.html?moduleType=currentMonthPrepare">
+	    				<span>{{repayInfo.currentMonthPrepare}}</span>
+	    				<p>本月预还</p>
+	    			</a>
+	    			<a class="ui-col" href="loan_expenditure.html?moduleType=nextMonthPrepare">
+	    				<span>{{repayInfo.nextMonthPrepare}}</span>
+	    				<p>下月预还</p>
+	    			</a>
+	    		</div>
+	    		<div class="ui-row-flex index-box-right">
+	    			<a class="ui-col" href="loan_expenditure.html?moduleType=currentMonthActual">
+	    				<span>{{repayInfo.currentMonthActual}}</span>
+	    				<p>本月实还</p>
+	    			</a>
+	    			<a class="ui-col" href="loan_expenditure_change.html">
+	    				<span>{{repayInfo.changed}}</span>
+	    				<p>支出变更</p>
+	    			</a>
+	    		</div>
+	    	</div>
+	    	<div class="index-box">
+	    		<a class="index-box-left project" href="pro_info.html">项目信息</a>
+	    		<div class="ui-row-flex index-box-right">
+	    			<a class="ui-col" href="pro_info.html?projectType=01">
+	    				<span>{{projectInfo.financingProject}}</span>
+	    				<p>融资项目</p>
+	    			</a>
+	    			<a class="ui-col" href="pro_info.html?projectType=02">
+	    				<span>{{projectInfo.generalProject}}</span>
+	    				<p>一般项目</p>
+	    			</a>
+	    		</div>
+	    		<div class="ui-row-flex index-box-right">
+	    			<a class="ui-col" href="pro_play.html">
+	    				<span>{{projectInfo.projectPlan}}</span>
+	    				<p>项目计划</p>
+	    			</a>
+	    			<a class="ui-col" href="loan.html?contractType=projectContract">
+	    				<span>{{projectInfo.projectContract}}</span>
+	    				<p>项目合同</p>
+	    			</a>
+	    		</div>
+	    	</div>
+	    	</script>
+    		</div>
+	    	
+	    	<p class="index-menus period">周期表</p>
+	    	<a class="index-menu" href="period.html">
+	    		<img src="image/index/period.png"/>
+	    	</a>
+	    	<p class="index-menus board">网银看板</p>
+	    	<a class="index-menu" href="board_list.html">
+	    		<img src="image/index/board.png"/>
+	    	</a>
+	    	
+    	</div>
+    	
+    	<div class="ui-row-flex index-footer">
+    		<a class="ui-col" href="index.html">
+    			<div class="index-center active">
+    				<em class="index-home"></em>
+    				<span>首页</span>
+    			</div>
+    		</a>
+    		<a class="ui-col" href="model.html">
+    			<div class="index-center">
+	    			<em class="index-pro"></em>
+	    			<span>功能</span>
+	    		</div>
+    		</a>
+    		<a class="ui-col" href="mine.html">
+    			<div class="index-center">
+	    			<em class="index-mine"></em>
+	    			<span>我的</span>
+	    		</div>
+    		</a>
+    	</div>
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js" ></script>
+    <script type="text/javascript" src="js/frozen.js" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js" ></script>
+    <script type="text/javascript" src="js/common.js" ></script>
+    <script type="text/javascript" src="js/main.js" ></script>
+    <!--endbuild-->
+    <script>
+    	$(function(){
+			index.init();
+		});
+    </script>
+</html>

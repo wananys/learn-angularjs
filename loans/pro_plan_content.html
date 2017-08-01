@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>汇报内容</title>
+ 	<link rel="stylesheet" href="css/frozen.css" />
+ 	<link rel="stylesheet" href="css/main.css" />
+    <body class="pro-play-content">
+    	<div class="ui-row-flex pro-detail-title loan-center">
+		    <div class="ui-col ui-col-1">汇报人</div>
+		    <div class="ui-col ui-col-2">内容</div>
+		    <div class="ui-col">时间</div>
+		</div>
+    	<ul class="pro-content-list">
+    		<script id="proPlanContentTemp" type="text/html">
+    		{{each scheduleContentList}}
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1"><span class="pro-content-center self-omit">{{$value.userName}}</span></div>
+		    		<div class="ui-col ui-col-2 self-omit-3">{{$value.content}}</div>
+		    		<div class="ui-col ui-col-1 loan-center">{{$value.time}}</div>
+		    	</div>
+    		</li>
+    		{{/each}}
+    		</script>
+    	</ul>
+    	<div class="ui-loading-wrap">
+		    <p>正在加载中...</p>
+		</div>
+		<input type="hidden" name="loan-keyword" value=""/>
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js" ></script>
+    <script type="text/javascript" src="js/frozen.js" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js" ></script>
+    <script type="text/javascript" src="js/common.js" ></script>
+    <script type="text/javascript" src="js/project.js" ></script>
+    <script>
+    	$(function(){
+    		proPlayContent.init();
+    		menus();
+    	});
+    </script>
+</html>

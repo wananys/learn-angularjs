@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>日志</title>
+ 	<link rel="stylesheet" href="css/frozen.css" />
+ 	<link rel="stylesheet" href="css/main.css" />
+    <body>
+		<ul class="log-list">
+			<script type="text/html" id="proLogTemp">
+			{{each operationLogList}}	
+	    	<li class="{{if $value.operationType=='01'}}log-create{{else if $value.operationType=='03'}}log-delete{{/if}} ui-row-flex">
+    			<div class="ui-col ui-col-1 log-left">
+    				{{if $value.contractNo}}<h5 class="self-omit-2">{{$value.contractNo}}</h5>{{/if}}
+    				{{if $value.clauseNo}}<p>{{$value.clauseNo}}</p>{{/if}}
+    				{{if $value.nodeName}}<p>{{$value.nodeName}}</p>{{/if}}
+    				{{if $value.nodeCategory}}<p>{{$value.nodeCategory}}</p>{{/if}}
+    				
+    				{{if $value.graranteeNo}}<h5 class="self-omit-2">{{$value.graranteeNo}}</h5>{{/if}}
+    				{{if $value.guaranteeName}}<p>{{$value.guaranteeName}}</p>{{/if}}
+    				
+    				{{if $value.debtorNo}}<h5 class="self-omit-2">{{$value.debtorNo}}</h5>{{/if}}
+    				{{if $value.debtorName}}<p>{{$value.debtorName}}</p>{{/if}}
+    				
+    				{{if $value.lenderNo}}<h5 class="self-omit-2">{{$value.lenderNo}}</h5>{{/if}}
+    				{{if $value.lenderName}}<p>{{$value.lenderName}}</p>{{/if}}
+    				
+    				{{if $value.operationUser}}<p>{{$value.operationUser}}</p>{{/if}}
+    				<p>{{$value.time}}</p>
+    				<div class="log-icon"></div>
+    			</div>
+    			<div class="ui-col ui-col-2">
+    				<p class="log-title-p">操作前：</p>
+		    		<ul class="log-option ">
+			    		{{each $value.beforeOperation as operation}}
+			    			<li>{{operation.filedName}}：{{operation.filedValue}}</li>
+			    		{{/each}}
+			    	</ul>	
+	    			<p class="log-title-p">操作后：</p>
+	    			<ul class="log-option">
+			    		{{each $value.afterOperation as operation}}
+			    			<li>{{operation.filedName}}：{{operation.filedValue}}</li>
+			    		{{/each}}
+			    	</ul>
+    			</div>
+    			
+	    	</li>
+	    	{{/each}}
+	    	</script>
+	    </ul>	
+	    <div class="pro_log_dialog ui-dialog">
+		    <div class="ui-dialog-cnt">
+		        <div class="ui-dialog-bd">
+		            <div>
+		            <div>内容</div></div>
+		        </div>
+		        <div class="ui-dialog-ft ui-btn-group">
+		            <button type="button" data-role="button"  class="select" id="dialogButton<%=i%>">关闭</button> 
+		        </div>
+		    </div>        
+		</div>
+		<div class="ui-loading-wrap">
+		</div>
+	 </body>
+    <script type="text/javascript" src="js/zepto.min.js" ></script>
+    <script type="text/javascript" src="js/frozen.js" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js" ></script>
+    <script type="text/javascript" src="js/common.js" ></script>
+    <script type="text/javascript" src="js/project.js" ></script>
+    <script>
+    	$(function(){
+    		proLog.init();
+			menus();
+		});
+    </script>
+</html>

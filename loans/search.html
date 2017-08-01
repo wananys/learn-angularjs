@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>搜索</title>
+ 	<link rel="stylesheet" href="css/frozen.css" />
+ 	<link rel="stylesheet" href="css/main.css" />
+    <body>
+    	<div class="loan-search">
+    		<em class="loan-back none"></em>
+    		<input type="search" class="loan-search-ipt" name="search"/>
+    		<span class="loan-search-btn">搜索</span>
+    		<em class="loan-search-clear"></em>
+    	</div>	
+    	<ul class="search-list none">
+    		<script id="searchTemp" type="text/html">
+    			{{each records}}
+    			<li>
+    				<div class="loan-contract">
+    				<div class="ui-row-flex search-list-head">
+    					<h3 class="ui-col ui-col-3 self-omit">{{$value.moduleDesc}}</h3>
+    					{{if $value.hasMore}}<a class="ui-col search-list-more" href="{{$value.module | setUrl}}"><span class="self-more">更多</span></a>{{/if}}
+    				</div>
+    				</div>
+    				{{each $value.moduleRecords as item}}
+    				<p class="self-omit-2 search-list-content"><span></span><a href="{{$value.module | setUrl:item.id}}">{{item.name}}</a></p>
+    				{{/each}}
+    			</li>
+    			{{/each}}
+    		</script>
+    	</ul>
+    	<div class="ui-loading-wrap">
+		</div>
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js" ></script>
+    <script type="text/javascript" src="js/frozen.js" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js" ></script>
+    <script type="text/javascript" src="js/common.js" ></script>
+    <script type="text/javascript" src="js/main.js" ></script>
+    <script>
+    	$(function(){
+    		search_page.init();
+		});
+    </script>
+</html>

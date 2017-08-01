@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>汇报详情</title>
+ 	<link rel="stylesheet" href="css/frozen.css" />
+ 	<link rel="stylesheet" href="css/main.css" />
+    <body class="loan-detail">
+    	<div class="ui-row-flex loan-detail-title">
+		    <div class="ui-col ui-col-1">名称</div>
+		    <div class="ui-col ui-col-2 loan-center">详细信息</div>
+		</div>
+		<div id="proPlanList">
+		<script type="text/html" id="planlistTemp">
+    	<ul class="loan-detail-list">
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">项目名称</div>
+		    		<div class="ui-col ui-col-2">{{dataSource.projectName}}</div>
+		    	</div>
+    		</li>
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">计划名称</div>
+		    		<div class="ui-col ui-col-2">{{dataSource.planName}}</div>
+		    	</div>
+    		</li>
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">汇报编号</div>
+		    		<div class="ui-col ui-col-2">{{dataSource.scheduleNo}}</div>
+		    	</div>
+    		</li>
+    		<!--<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">汇报负责人</div>
+		    		<div class="ui-col ui-col-2">{{dataSource.debtor}}</div>
+		    	</div>
+    		</li>-->
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">开始日期</div>
+		    		<div class="ui-col ui-col-2">{{dataSource.planBeginDate}}</div>
+		    	</div>
+    		</li>
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">截止日期</div>
+		    		<div class="ui-col ui-col-2">{{dataSource.planEndDate}}</div>
+		    	</div>
+    		</li>
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">计划状态</div>
+		    		<div class="ui-col ui-col-2">{{dataSource.planStatusDesc}}</div>
+		    	<dataSource>
+    		</li>
+    		<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">计划概述</div>
+		    		<div class="ui-col ui-col-2">{{dataSource.planSummary}}</div>
+		    	</div>
+    		</li>
+    		<!--<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">阶段目标</div>
+		    		<div class="ui-col ui-col-2">{{dataSource.stageTarget}}</div>
+		    	</div>
+    		</li>-->
+    		<!--<li>
+    			<div class="ui-row-flex">
+		    		<div class="ui-col ui-col-1">备注</div>
+		    		<div class="ui-col ui-col-2">{{dataSource.remark}}</div>
+		    	</div>
+    		</li>-->
+    	</ul>
+    	
+    	<ul class="more-list">
+    		<li>
+	    		<a href="pro_plan_content.html?scheduleNo={{dataSource.scheduleNo}}">
+				    <div class="ui-row-flex">
+				    	<div class="ui-col">汇报内容</div>
+				    	<div class="ui-col ui-col-2 loan-view">查看<span class="self-more"></span></div>
+				    </div>
+				</a>
+	    	</li>
+	    	<li>
+	    		<a href="loan_attachment.html?relatedKey={{dataSource.scheduleNo}}&&relatedCategory=PlanReport">
+				    <div class="ui-row-flex">
+				    	<div class="ui-col">汇报附件</div>
+				    	<div class="ui-col ui-col-2 loan-view">查看<span class="self-more"></span></div>
+				    </div>
+				</a>
+	    	</li>
+	    </ul>	
+    	
+    	</script>
+    	</div>
+    </body>
+    <script type="text/javascript" src="js/zepto.min.js" ></script>
+    <script type="text/javascript" src="js/frozen.js" ></script>
+    <script type="text/javascript" src="js/artTemplate.min.js" ></script>
+    <script type="text/javascript" src="js/common.js" ></script>
+    <script type="text/javascript" src="js/project.js" ></script>
+    <script>
+    	$(function(){
+			proPlanDetail.init();
+			menus('home');
+		});
+    </script>
+</html>
